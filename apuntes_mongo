@@ -1,0 +1,36 @@
+apuntes mongo
+
+db.socios.find({numSocio: {$gt:300}}) buscar en colección socios. Se usa comillas solo cuando busquemos embebed documents, es decir, contacto.telefono
+
+CONDICIONES: 
+
+db.socios.find({numSocio: 300 }) igual a
+
+db.socios.find({numSocio: {$gt: 300} }) mayor que
+
+db.socios.find({numSocio: {$lt: 300} }) menor que
+
+db.socios.find({numSocio: {$gte: 300} }) mayor o igual que
+
+db.socios.find({numSocio: {$ne: 300} }) diferente a (not equal)
+
+db.socios.find({numSocio: {$in: [300, 301]} }) pertenece a
+db.socios.find({numSocio: {$nin: [300, 301]} }) no pertenece a
+
+OPERADORES LOGICOS:
+
+db.socios.find({$and: [{nombre: "Juan"}, {apellido: "Galindo"}]}) AND de toda la vida
+
+db.socios.find({$or: [{nombre: "Juan"},{apellido1: "Galindo"}]}) OR de toda la vida
+
+db.socios.find({numSocio: {$not: [$eq:300]}}) no debe cumplir la CONDICIONES
+db.socios.find({$nor: [{nombre: "Juan"}, {apellido: "Galindo"}]})
+
+los operadores lógicos pueden anidarse:
+db.socios.find({$or: [{$and: [{nombre: "Juan"}, {apellido: "Galindo"}]}, {numSocio: 300}]})
+
+OPERADORES LÓGICOS SOBRE CAMPOS
+
+db.socios.find({ apellido2: { $exists: true } }) existe el campo
+
+db.socios.find({ apellido2: { $type: “string” } }) El campo es de un tipo concreto
